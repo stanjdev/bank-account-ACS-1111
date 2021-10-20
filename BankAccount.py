@@ -1,3 +1,5 @@
+from random import randint
+
 class BankAccount:
   def __init__(self, full_name, account_number, balance = 0):
     self.full_name = full_name
@@ -30,11 +32,18 @@ class BankAccount:
 
   def print_statement(self):
     print(f"{self.full_name}")
-    print(f"Account No.: ****{str(self.account_number)[-4:]}")
+    print(f"Account No.: ****{self.account_number[-4:]}")
     print(f"Balance: {format(self.balance, '.2f')}")
 
 
-stanley = BankAccount('Stanley Jeong', 12345678, 1343)
+def rand_account():
+  account_number = ""
+  for _ in range(8):
+    value = randint(0, 9)
+    account_number += str(value)
+  return account_number
+
+stanley = BankAccount('Stanley Jeong', rand_account(), 1343)
 stanley.deposit(2000)
 
 stanley.withdraw(4000)
